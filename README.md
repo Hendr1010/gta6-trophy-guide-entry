@@ -1,40 +1,42 @@
-# Palm & Platinum — GTA VI Trophy Guide & Tracker
+[![GTA 6 Trophy Guide](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+[![Rank](https://make.fun/badge/gta6-trophy-guide-01/Hendr1010/gta6-trophy-guide-entry/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+[![Reward](https://make.fun/badge/gta6-trophy-guide-01/Hendr1010/gta6-trophy-guide-entry/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 
-[![gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![rank](https://make.fun/badge/gta6-trophy-guide-01/Hendr1010/gta6-trophy-guide-entry/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![reward](https://make.fun/badge/gta6-trophy-guide-01/Hendr1010/gta6-trophy-guide-entry/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+# Leonida — GTA VI Trophy Guide & Tracker
 
-An offline web app that is the best guide and tracker for all **55 PlayStation 5 trophies** of Grand Theft Auto VI — built for the [make.fun bounty](https://make.fun/bounty/gta6-trophy-guide-01).
+The complete guide and tracker for all **55 PlayStation 5 trophies** of Grand Theft Auto VI: every official name, description and grade, a guide to each trophy in our own words with its source cited, a checklist that saves in your browser, a six-stage roadmap to the platinum, and a missables list so a one-time moment never costs you a second playthrough.
 
 ## What it does
 
-- **Every trophy, official and exact** — all 55 names, descriptions and grades exactly as PlayStation publishes them (1 platinum, 2 gold, 6 silver, 46 bronze; 28 hidden).
-- **A guide to each trophy, in the author's own words, with its source cited** — what to do, where and how, and when it can be missed. Sources (Exophase, PSNProfiles, GTA Wiki, PowerPyx, TrueTrophies) are named and linked beside each guide; their text is never copied.
-- **Checklist tracker** — tick trophies off; progress is saved in the browser (localStorage) and can be **exported to a .json file and imported back**.
-- **Filters by kind** — story, missable, collectibles, activities, online — plus grade filter, search, earned-only and hide-earned.
-- **Spoiler mode** — hides story trophies' names, descriptions and guides until you earn them.
-- **Platinum roadmap** — the order to earn them in, in 6 stages: story first, missables before the finale, strangers, activities, collectibles, then 100% and the platinum.
-- **Missables flagged** — 12 trophies tied to one-time moments or choices, with their own page and warnings.
+- **Checklist** — tick trophies off as you earn them; progress saves in the browser (localStorage). Search, filter by kind (story / missable / collectibles / activities / online) and grade, show earned-only or hide earned.
+- **Spoiler-safe mode** — on by default: hidden story trophies stay masked (name, description and guide) until you earn them.
+- **Platinum Roadmap** — the 55 trophies in six stages, in the order to earn them: story, strangers, activities, collectibles, heists, then the one-time moments and the 100% cleanup.
+- **Missables** — the 12 one-time trophies, with a warning to do them before they pass. Read this tab before you start the story.
+- **Export / import** — download your progress as JSON and import it back on any machine. Reset clears every tick.
+- **Every guide cites its source** — Exophase, PSNProfiles, GTA Wiki, PowerPyx and TrueTrophies, named beside each guide. Trophy names and descriptions are shown exactly as PlayStation publishes them; the guides themselves are written in our own words.
 
 ## Run it offline
 
-No build step, no network. Serve `app/` with any static server and open `index.html`:
+No build step, no network requests, no account. Open `app/index.html` in a browser, or serve the `app/` folder:
 
 ```sh
-cd app && python3 -m http.server 8080
-# open http://localhost:8080
+python3 -m http.server --directory app 8080
+# then open http://localhost:8080
 ```
 
-Or open `app/index.html` directly from disk via a local server of your choice. The app loads only its own local files (`app.js`, `style.css`, `data/trophies.json`) and makes no network requests.
-
-## Handing it in
-
-`main.ts` (Node 22+, standard library only) copies `app/` and `screenshots/` to the output directory and writes `dossier.json` with the kit's `vendor/makefun-frontend.ts`:
+## Hand it in
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+# out/ holds app/, screenshots/ and dossier.json
 ```
 
-## License
+## Files
 
-MIT — see [LICENSE](LICENSE). Unofficial fan guide; not affiliated with Rockstar Games, Take-Two Interactive or PlayStation. No official artwork or logos are used.
+- `main.ts` — copies `app/` and `screenshots/` to the output dir and writes `dossier.json` (Node 22, standard library only).
+- `app/index.html`, `app/app.js`, `app/style.css` — the guide itself.
+- `app/data/trophies.json` — the 55 trophies with official names/descriptions/grades, kinds, hidden flags, missable flags, roadmap order, guides and sources.
+- `screenshots/` — four real renders of the app (checklist, trophy detail, roadmap, missables).
+- `vendor/makefun-frontend.ts` — the kit's dossier library, unchanged.
+
+Unofficial fan guide. Not affiliated with Rockstar Games or Sony Interactive Entertainment.
