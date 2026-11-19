@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palm &amp; Platinum — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff2e88'/%3E%3Cstop offset='1' stop-color='%23ff9a3d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2314091f'/%3E%3Ccircle cx='32' cy='32' r='18' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-sun" aria-hidden="true"></div>
+  <div class="hero-text">
+    <p class="kicker">GRAND THEFT AUTO VI &middot; PLAYSTATION 5 &middot; 55 TROPHIES</p>
+    <h1>Palm <span>&amp;</span> Platinum</h1>
+    <p class="tagline">The complete Leonida trophy guide and tracker — every trophy, every guide, every missable, one road to the platinum. Works fully offline.</p>
+  </div>
+  <div class="progress" id="progressBox">
+    <div class="progress-num"><span id="earnedCount">0</span><span class="of">/ 55 earned</span></div>
+    <div class="bar"><div class="bar-fill" id="barFill" style="width:0%"></div></div>
+    <p class="progress-sub" id="progressSub">Platinum 0/1 &middot; Gold 0/2 &middot; Silver 0/6 &middot; Bronze 0/46</p>
+    <p class="progress-sub" id="missableSub">Missables secured 0/12</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <button type="button" class="tab active" data-view="checklist">Checklist</button>
+  <button type="button" class="tab" data-view="roadmap">Platinum Roadmap</button>
+  <button type="button" class="tab" data-view="missables">Missables <span class="tab-count" id="missableTabCount">12</span></button>
+</nav>
+
+<section class="controls" id="checklistControls">
+  <input id="search" type="search" placeholder="Search trophies, missions, guides…" aria-label="Search trophies">
+  <div class="chips" id="kindChips" role="group" aria-label="Filter by kind">
+    <button type="button" class="chip active" data-kind="all">All 55</button>
+    <button type="button" class="chip" data-kind="story">Story</button>
+    <button type="button" class="chip" data-kind="missable">Missable</button>
+    <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
+    <button type="button" class="chip" data-kind="activities">Activities</button>
+    <button type="button" class="chip" data-kind="online">Online</button>
+  </div>
+  <div class="control-row">
+    <label>Grade
+      <select id="gradeFilter">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" id="earnedOnly"> Earned only</label>
+    <label class="check"><input type="checkbox" id="hideEarned"> Hide earned</label>
+    <label class="check spoiler"><input type="checkbox" id="spoilerMode"> Spoiler mode — hide story trophies until earned</label>
+  </div>
+  <div class="control-row">
+    <button type="button" id="exportBtn">Export progress (.json)</button>
+    <label class="import-btn">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
+    <button type="button" id="resetBtn" class="danger">Reset progress</button>
+    <span class="saved-note" id="savedNote">Progress saves in this browser automatically.</span>
+  </div>
+</section>
+
+<main>
+  <section id="view-checklist" class="view">
+    <p class="list-meta" id="listMeta"></p>
+    <div id="trophyList" class="trophy-list"></div>
+    <p class="empty" id="emptyMsg" hidden>No trophies match these filters.</p>
+  </section>
+
+  <section id="view-roadmap" class="view" hidden>
+    <div class="roadmap-intro">
+      <h2>The road to the platinum</h2>
+      <p>Play the story in order, clear the missables <strong>before the final mission</strong>, then mop up strangers, activities and collectibles. Story trophies are <strong>not</strong> missable — mission replay lets you redo them. The 12 flagged missables are the ones tied to one-time moments or choices.</p>
+      <p class="roadmap-note">Estimated order is a guide, not a straitjacket: the stages are the order that wastes the least replaying.</p>
+    </div>
+    <div id="roadmapStages"></div>
+  </section>
+
+  <section id="view-missables" class="view" hidden>
+    <div class="missable-banner">
+      <h2>Do these before the finale</h2>
+      <p>These 12 trophies are tied to one-time story moments, partner missions or choices. Once the final mission is done, some of them may not come back. Clear them during the story — this page is the checklist for exactly that.</p>
+    </div>
+    <div id="missableList" class="trophy-list"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Official trophy names, descriptions and grades are shown exactly as PlayStation publishes them. Guides are written for this page in the author's own words and cite their sources beside each trophy — a source is cited, never copied. Sources: Exophase, PSNProfiles, GTA Wiki, PowerPyx, TrueTrophies.</p>
+  <p>Unofficial fan guide. Not affiliated with Rockstar Games, Take-Two Interactive or PlayStation. No official artwork or logos are used. All files are local — this page makes no network requests and works offline.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
