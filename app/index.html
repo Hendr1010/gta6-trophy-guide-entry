@@ -3,39 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leonida — GTA VI Trophy Guide &amp; Tracker</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff2e88'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
+<title>LEONIDA — GTA VI Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="hero">
   <div class="hero-inner">
-    <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
-    <h1>Leonida</h1>
-    <p class="tagline">The complete trophy guide &amp; tracker for Vice City and the state of Leonida — every trophy, every step, every missable, in the order to earn them.</p>
-    <div class="progress-wrap" aria-label="Progress to platinum">
-      <div class="progress-row">
-        <span id="progress-text">0 of 55 earned</span>
-        <span id="progress-pct">0%</span>
-      </div>
-      <div class="progress-bar"><div id="progress-fill"></div></div>
-      <div class="grade-chips" id="grade-chips"></div>
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5</p>
+    <h1>LEONIDA</h1>
+    <p class="tagline">The offline trophy guide &amp; tracker for all 55 trophies — checklist, roadmap, missables, and a guide to each, with its sources.</p>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill" style="width:0%"></div></div>
+      <p id="progress-text" class="progress-text">0 of 55 earned &middot; 0%</p>
     </div>
+    <p class="counts" id="counts"></p>
   </div>
 </header>
 
-<nav class="tabs" role="tablist" aria-label="Views">
-  <button class="tab active" data-tab="checklist" role="tab" aria-selected="true" type="button">Checklist</button>
-  <button class="tab" data-tab="roadmap" role="tab" aria-selected="false" type="button">Platinum Roadmap</button>
-  <button class="tab" data-tab="missables" role="tab" aria-selected="false" type="button">Missables <span class="tab-badge" id="missable-count"></span></button>
+<nav class="tabs" aria-label="Views">
+  <button type="button" class="tab active" data-view="checklist">Checklist</button>
+  <button type="button" class="tab" data-view="roadmap">Platinum Roadmap</button>
+  <button type="button" class="tab" data-view="missables">Missables <span id="miss-count" class="pill">12</span></button>
 </nav>
 
 <main>
-  <section id="tab-checklist" class="panel active">
+  <section id="view-checklist" class="view">
     <div class="controls">
-      <input id="search" type="search" placeholder="Search trophies, guides, places…" aria-label="Search trophies">
-      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind"></div>
-      <label class="ctl">Grade
+      <input id="search" type="search" placeholder="Search trophies by name…" aria-label="Search trophies">
+      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind">
+        <button type="button" class="chip active" data-kind="all">All</button>
+        <button type="button" class="chip" data-kind="story">Story</button>
+        <button type="button" class="chip" data-kind="missable">Missable</button>
+        <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
+        <button type="button" class="chip" data-kind="activities">Activities</button>
+        <button type="button" class="chip" data-kind="online">Online</button>
+      </div>
+      <label class="grade-label">Grade
         <select id="grade">
           <option value="all">All grades</option>
           <option value="platinum">Platinum</option>
@@ -44,37 +47,38 @@
           <option value="bronze">Bronze</option>
         </select>
       </label>
-      <label class="ctl check"><input id="earned-only" type="checkbox"> Earned only</label>
-      <label class="ctl check"><input id="hide-earned" type="checkbox"> Hide earned</label>
-      <label class="ctl check spoiler"><input id="spoiler" type="checkbox" checked> Spoiler-safe mode</label>
+      <label class="toggle"><input id="spoiler" type="checkbox" checked> Spoiler mode <span class="hint">hides story trophies until earned</span></label>
+      <label class="toggle"><input id="hide-earned" type="checkbox"> Hide earned</label>
     </div>
-    <div class="toolbar">
+    <div class="actions">
       <button id="export" type="button">Export progress</button>
-      <label class="import-btn">Import progress <input id="import" type="file" accept="application/json"></label>
-      <button id="reset" type="button" class="danger">Reset all ticks</button>
-      <span class="hint">Progress is saved in this browser only. Export a backup before clearing site data.</span>
+      <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
+      <button id="reset" type="button" class="danger">Reset progress</button>
     </div>
-    <p id="result-count" class="result-count"></p>
-    <div id="rows" class="cards"></div>
+    <p id="empty" class="empty" hidden>No trophies match these filters.</p>
+    <ul id="list" class="trophy-list"></ul>
+    <aside id="detail" class="detail" hidden></aside>
   </section>
 
-  <section id="tab-roadmap" class="panel">
-    <p class="panel-intro">The road to the platinum in six stages. Work them in order — story first, then strangers, activities, collectibles, heists, and finally the one-time moments and the 100% cleanup.</p>
-    <div id="roadmap"></div>
+  <section id="view-roadmap" class="view" hidden>
+    <h2>Road to the Platinum</h2>
+    <p class="lede">Six stages, in order. Do the missables in Stage 3 before they pass — everything else can be cleaned up later. Built from the official trophy descriptions: which story chapters and missions, which collectibles and counts.</p>
+    <ol id="roadmap" class="roadmap"></ol>
   </section>
 
-  <section id="tab-missables" class="panel">
-    <div class="warn">
-      <strong>Read this before you start.</strong>
-      Twelve trophies are tied to one-time moments — a partner scene, a story beat, a single chance. Miss one and the platinum needs a second playthrough. Do these in the order shown, and save before the branching choice in <em>Actions Speak Louder</em>.
+  <section id="view-missables" class="view" hidden>
+    <h2>Missable trophies — read this before you start</h2>
+    <div class="warning">
+      <strong>Twelve trophies are tied to one-time moments, choices, or a single attempt.</strong>
+      Once the moment passes, the only way back is a new playthrough (or a save from before it). Do these in Stage 3 of the roadmap, before the story moves on. The list below is built from the official descriptions — a trophy is flagged missable when its description ties it to a one-time moment or a choice.
     </div>
-    <div id="missable-rows" class="cards"></div>
+    <ul id="miss-list" class="trophy-list"></ul>
   </section>
 </main>
 
 <footer>
-  <p>Unofficial fan guide. Not affiliated with Rockstar Games or Sony Interactive Entertainment. Trophy names and descriptions are shown as PlayStation publishes them; every guide is written in our own words, with its source cited beside it.</p>
-  <p>Sources: Exophase, PSNProfiles, GTA Wiki, PowerPyx and TrueTrophies — see each trophy's guide for its source. Game: Grand Theft Auto VI (PS5). Guide data: pre-launch trophy list, verified against the official 55-trophy list.</p>
+  <p><strong>Sources.</strong> Trophy names, descriptions and grades are the official PlayStation list as Exophase and PSNProfiles published it. Each guide below names its sources beside it. Guides are our own words, written from the official descriptions — a place or step is not pinned down where it has not been checked in the game, so check the cited source before you commit to a route.</p>
+  <p>LEONIDA is an unofficial fan guide. Not affiliated with Rockstar Games, Sony or PlayStation. No Rockstar logo, artwork or game screenshots are used. Works fully offline — it loads nothing over the network.</p>
 </footer>
 
 <script type="module" src="app.js"></script>
